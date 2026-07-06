@@ -2,1239 +2,193 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexaCorp Industries — Empowering Tomorrow</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Be Black or White</title>
 <style>
-  :root {
-    --bg: #0a0c0f;
-    --surface: #111318;
-    --surface2: #181c23;
-    --border: #1e2330;
-    --accent: #00e5a0;
-    --accent2: #0066ff;
-    --accent3: #ff6b35;
-    --text: #e8eaf0;
-    --muted: #6b7280;
-    --danger: #ef4444;
-    --warn: #f59e0b;
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #0c0c0c;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
 
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ─── NOISE TEXTURE ─── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 2.5rem;
-    height: 64px;
-    background: rgba(10,12,15,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    justify-content: center;
+    font-family: 'Consolas', 'Courier New', monospace;
   }
 
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    letter-spacing: -0.02em;
-  }
-  .logo span { color: var(--accent); }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: color 0.2s;
-    letter-spacing: 0.02em;
-  }
-  .nav-links a:hover { color: var(--text); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: #000 !important;
-    padding: 0.45rem 1.2rem;
+  .terminal {
+    width: min(720px, 90vw);
+    background: #0f1110;
+    border: 1px solid #262626;
     border-radius: 6px;
-    font-weight: 600 !important;
-    transition: opacity 0.2s !important;
-  }
-  .nav-cta:hover { opacity: 0.85; }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 2.5rem 4rem;
-    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     overflow: hidden;
   }
 
-  .hero-grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,160,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,160,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(0,229,160,0.07) 0%, transparent 70%);
-    top: -200px; right: -100px;
-    pointer-events: none;
-  }
-
-  .hero-badge {
-    display: inline-flex;
+  .title-bar {
+    background: #1a1c1a;
+    padding: 8px 12px;
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(0,229,160,0.08);
-    border: 1px solid rgba(0,229,160,0.25);
-    color: var(--accent);
-    padding: 0.35rem 1rem;
-    border-radius: 100px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    margin-bottom: 1.5rem;
-    width: fit-content;
+    gap: 8px;
+    border-bottom: 1px solid #262626;
   }
 
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    max-width: 800px;
-    margin-bottom: 1.5rem;
-    position: relative;
-  }
-  .hero h1 .hl { color: var(--accent); }
-
-  .hero p {
-    color: var(--muted);
-    font-size: 1.125rem;
-    max-width: 540px;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    margin-top: 3rem;
-  }
-  .stat-item { }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
-  .stat-label {
-    color: var(--muted);
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  /* ─── SECTIONS ─── */
-  section { padding: 5rem 2.5rem; position: relative; }
-
-  .section-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    margin-bottom: 1rem;
-  }
-
-  .section-desc {
-    color: var(--muted);
-    max-width: 560px;
-    margin-bottom: 3rem;
-    font-size: 1rem;
-  }
-
-  /* ─── ABOUT ─── */
-  #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .about-info p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
-
-  .company-facts {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem;
-  }
-  .company-facts h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-  .fact-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.875rem;
-  }
-  .fact-row:last-child { border-bottom: none; }
-  .fact-key { color: var(--muted); }
-  .fact-val { color: var(--text); font-weight: 500; font-family: 'DM Mono', monospace; font-size: 0.8rem; }
-
-  /* ─── TEAM ─── */
-  #team { max-width: 1200px; margin: 0 auto; }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .team-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-    transition: border-color 0.3s, transform 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .team-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .team-card:hover { border-color: rgba(0,229,160,0.3); transform: translateY(-4px); }
-  .team-card:hover::before { opacity: 1; }
-
-  .team-avatar {
-    width: 64px; height: 64px;
+  .dot {
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    margin-bottom: 1.25rem;
+  }
+  .dot.red { background: #ff5f56; }
+  .dot.yellow { background: #ffbd2e; }
+  .dot.green { background: #27c93f; }
+
+  .title-text {
+    flex: 1;
+    text-align: center;
+    color: #7a7a7a;
+    font-size: 12px;
+    letter-spacing: 0.5px;
   }
 
-  .team-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-  .team-role {
-    color: var(--accent);
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    font-family: 'DM Mono', monospace;
-  }
-  .team-bio {
-    color: var(--muted);
-    font-size: 0.875rem;
+  .body {
+    padding: 22px 26px 30px;
+    min-height: 220px;
+    color: #c9c9c9;
+    font-size: 14px;
     line-height: 1.7;
-    margin-bottom: 1.25rem;
-  }
-  .team-meta {
-    background: var(--surface2);
-    border-radius: 8px;
-    padding: 0.875rem 1rem;
-    font-size: 0.8rem;
-  }
-  .meta-row {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.4rem;
-    align-items: flex-start;
-  }
-  .meta-row:last-child { margin-bottom: 0; }
-  .meta-label {
-    color: var(--accent);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    min-width: 80px;
-    padding-top: 1px;
-  }
-  .meta-val { color: var(--text); }
-
-  /* ─── DEPARTMENTS ─── */
-  #departments { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-  .dept-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-    max-width: 1000px;
   }
 
-  .dept-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.75rem;
+  .line {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
-  .dept-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
-  .dept-name {
-    font-family: 'Syne', sans-serif;
+
+  .prompt {
+    color: #4ec9b0;
+  }
+  .path {
+    color: #569cd6;
+  }
+  .cmd {
+    color: #d4d4d4;
+  }
+  .comment {
+    color: #6a9955;
+  }
+
+  .result {
+    color: #ffffff;
     font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .dept-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
-
-  /* ─── BLOG / POSTS ─── */
-  #blog { max-width: 1100px; margin: 0 auto; }
-
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    letter-spacing: 1px;
+    margin-top: 6px;
   }
 
-  .blog-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .blog-img {
-    height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-  }
-  .blog-content { padding: 1.5rem; }
-  .blog-tag {
+  .cursor {
     display: inline-block;
-    background: rgba(0,102,255,0.15);
-    color: #4d9eff;
-    border-radius: 4px;
-    padding: 0.2rem 0.6rem;
-    font-size: 0.7rem;
-    font-family: 'DM Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.75rem;
-  }
-  .blog-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-  .blog-excerpt { color: var(--muted); font-size: 0.825rem; line-height: 1.6; margin-bottom: 1rem; }
-  .blog-author {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.775rem;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-    padding-top: 0.875rem;
-  }
-  .author-dot {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    font-weight: 700;
+    width: 8px;
+    height: 15px;
+    background: #d4d4d4;
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
   }
 
-  /* ─── CTF HINTS BOX ─── */
-  .ctf-hint-box {
-    background: rgba(245,158,11,0.05);
-    border: 1px solid rgba(245,158,11,0.25);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    margin-top: 1rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.775rem;
-    color: #fbbf24;
-    line-height: 1.9;
-  }
-  .ctf-hint-box strong {
-    color: var(--warn);
-    display: block;
-    margin-bottom: 0.4rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
   }
 
-  /* ─── CONTACT ─── */
-  #contact { background: var(--surface); border-top: 1px solid var(--border); }
-
-  .contact-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+  #typed-final {
+    font-size: 20px;
+    letter-spacing: 1px;
   }
-
-  .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
-  .contact-detail {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-  }
-  .contact-icon { color: var(--accent); font-size: 1rem; width: 20px; text-align: center; }
-
-  /* ─── LOGIN PAGE ─── */
-  #login-section {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-    background: var(--bg);
-    overflow-y: auto;
-  }
-  #login-section.active { display: flex; align-items: center; justify-content: center; }
-
-  .login-panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    width: 100%;
-    max-width: 420px;
-    margin: 2rem;
-    padding: 2.5rem;
-    position: relative;
-  }
-
-  .login-logo {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .login-logo .brand {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-  }
-  .login-logo .brand span { color: var(--accent); }
-  .login-logo small { color: var(--muted); font-size: 0.75rem; display: block; margin-top: 0.25rem; }
-
-  .form-group { margin-bottom: 1.25rem; }
-  .form-label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-  }
-  .form-input {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    color: var(--text);
-    font-size: 0.925rem;
-    font-family: 'DM Mono', monospace;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-input:focus { border-color: var(--accent); }
-  .form-input::placeholder { color: var(--muted); }
-
-  .login-btn {
-    width: 100%;
-    background: var(--accent);
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    padding: 0.875rem;
-    font-weight: 700;
-    font-size: 0.95rem;
-    font-family: 'Syne', sans-serif;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    margin-top: 0.5rem;
-    letter-spacing: 0.02em;
-  }
-  .login-btn:hover { opacity: 0.85; }
-
-  .login-msg {
-    margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    font-size: 0.825rem;
-    text-align: center;
-    display: none;
-    font-family: 'DM Mono', monospace;
-  }
-  .login-msg.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #f87171; display: block; }
-  .login-msg.success { background: rgba(0,229,160,0.1); border: 1px solid rgba(0,229,160,0.3); color: var(--accent); display: block; }
-
-  .back-btn {
-    position: absolute;
-    top: 1.25rem; right: 1.25rem;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--muted);
-    padding: 0.4rem 0.8rem;
-    font-size: 0.775rem;
-    cursor: pointer;
-    font-family: 'DM Mono', monospace;
-    transition: color 0.2s;
-  }
-  .back-btn:hover { color: var(--text); }
-
-  /* ─── DASHBOARD ─── */
-  #dashboard-section {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-    background: var(--bg);
-    overflow-y: auto;
-  }
-  #dashboard-section.active { display: block; }
-
-  .dash-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2.5rem;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-  }
-  .dash-brand { font-family: 'Syne', sans-serif; font-weight: 800; }
-  .dash-brand span { color: var(--accent); }
-  .dash-user {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.875rem;
-  }
-  .dash-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.875rem;
-  }
-  .logout-btn {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 6px;
-    padding: 0.35rem 0.8rem;
-    font-size: 0.775rem;
-    cursor: pointer;
-    font-family: 'DM Mono', monospace;
-    transition: color 0.2s;
-  }
-  .logout-btn:hover { color: var(--danger); border-color: var(--danger); }
-
-  .dash-body { padding: 2.5rem; }
-  .dash-welcome {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.75rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-  }
-  .dash-welcome span { color: var(--accent); }
-  .dash-sub { color: var(--muted); margin-bottom: 2rem; font-size: 0.875rem; }
-
-  .dash-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-  }
-  .dash-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-  }
-  .dash-card-label { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'DM Mono', monospace; margin-bottom: 0.5rem; }
-  .dash-card-val { font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; }
-
-  .ctf-success-banner {
-    background: rgba(0,229,160,0.08);
-    border: 1px solid rgba(0,229,160,0.3);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--accent);
-  }
-  .ctf-success-banner h3 { font-size: 1rem; margin-bottom: 0.75rem; font-family: 'Syne', sans-serif; }
-  .flag { background: rgba(0,0,0,0.3); border-radius: 6px; padding: 0.5rem 1rem; margin-top: 0.75rem; font-size: 0.8rem; letter-spacing: 0.08em; }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 2rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-  .footer-brand { font-family: 'Syne', sans-serif; font-weight: 800; }
-  .footer-brand span { color: var(--accent); }
-
-  /* ─── SCROLLBAR ─── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 768px) {
-    nav { padding: 0 1.25rem; }
-    .nav-links { display: none; }
-    section { padding: 3.5rem 1.25rem; }
-    .hero { padding: 7rem 1.25rem 3rem; }
-    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-    .about-grid { grid-template-columns: 1fr; }
-    .team-grid { grid-template-columns: 1fr; }
-    .dept-grid { grid-template-columns: 1fr; }
-    .blog-grid { grid-template-columns: 1fr; }
-    .contact-wrapper { grid-template-columns: 1fr; }
-    .dash-cards { grid-template-columns: 1fr; }
-    .dash-body { padding: 1.5rem 1.25rem; }
-  }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero > * { animation: fadeUp 0.7s ease both; }
-  .hero .hero-badge { animation-delay: 0.1s; }
-  .hero h1 { animation-delay: 0.2s; }
-  .hero p { animation-delay: 0.3s; }
-  .hero-stats { animation-delay: 0.4s; }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .btn-primary { background: var(--accent); color: #000; }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="logo">Nexa<span>Corp</span></div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#departments">Departments</a></li>
-    <li><a href="#blog">News</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#" class="nav-cta" onclick="showLogin()">Employee Login</a></li>
-  </ul>
-  <button class="btn btn-primary" onclick="showLogin()" style="display:none" id="mobile-login">Login</button>
-</nav>
-
-<!-- ══════════════════════════════════════ MAIN WEBSITE ══════════════════════════════════════ -->
-<div id="main-site">
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-badge">
-    <span>▲</span> Est. 2009 · Mumbai, India
+  <div class="terminal">
+    <div class="title-bar">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+      <div class="title-text">bash — 80x24</div>
+    </div>
+    <div class="body" id="output"></div>
   </div>
-  <h1>Empowering Industries with <span class="hl">Smart Solutions</span></h1>
-  <p>NexaCorp Industries delivers cutting-edge automation, data analytics, and cybersecurity infrastructure to enterprises across Asia-Pacific.</p>
-  <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-    <a href="#about" class="btn btn-primary">Explore Company</a>
-    <button class="btn btn-outline" onclick="showLogin()">Employee Portal →</button>
-  </div>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">12K+</div>
-      <div class="stat-label">Employees</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">38</div>
-      <div class="stat-label">Countries</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">₹2.4B</div>
-      <div class="stat-label">Revenue FY24</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">2009</div>
-      <div class="stat-label">Founded</div>
-    </div>
-  </div>
-</section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-info">
-      <div class="section-tag">// About NexaCorp</div>
-      <h2>15 Years of Industrial Innovation</h2>
-      <p>NexaCorp Industries was founded in 2009 by Arjun Mehta in Andheri East, Mumbai. What started as a 12-person IT consultancy has grown into a pan-Asian enterprise solutions leader with offices in Pune, Bengaluru, Chennai, Hyderabad, and Singapore.</p>
-      <p>Our flagship products — NexaShield (cybersecurity platform), NexaStream (real-time analytics), and NexaOps (industrial automation) — serve Fortune 500 clients in manufacturing, BFSI, and healthcare sectors.</p>
-      <p>The company mascot is a <strong style="color:var(--text)">falcon</strong> — adopted in 2011 after our Pune office team adopted a rescued peregrine falcon they named <em style="color:var(--accent)">"Storm"</em>. He's still the unofficial mascot at our HQ.</p>
-      <div class="ctf-hint-box">
-        <strong>🏢 Company Quick Facts</strong>
-        HQ Pincode: 400069 · Founded: 09/04/2009<br>
-        Domain: nexacorp.in · Portal: portal.nexacorp.in<br>
-        Internal ticketing: support@nexacorp.in<br>
-        Annual hackathon: NexaHack (since 2015)<br>
-        Company anthem year: 2019 · IT Dept ext: 7743
-      </div>
-    </div>
-    <div>
-      <div class="company-facts">
-        <h3>Directory Info</h3>
-        <div class="fact-row">
-          <span class="fact-key">CIN</span>
-          <span class="fact-val">U72900MH2009PLC123456</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-key">Founded</span>
-          <span class="fact-val">09 April 2009</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-key">Headquarters</span>
-          <span class="fact-val">Andheri East, Mumbai 400069</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-key">CEO</span>
-          <span class="fact-val">Arjun Mehta</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-key">Industry</span>
-          <span class="fact-val">IT / ITeS / Cybersecurity</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-key">Stock Symbol</span>
-          <span class="fact-val">NSE: NEXACORP</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-key">Parent Org</span>
-          <span class="fact-val">Mehta Ventures Pvt. Ltd.</span>
-        </div>
-        <div class="fact-row">
-          <span class="fact-key">Employees</span>
-          <span class="fact-val">12,400 (FY2024)</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div style="max-width:1100px; margin:0 auto;">
-    <div class="section-tag">// Leadership Team</div>
-    <h2>Meet Our People</h2>
-    <p class="section-desc">The minds behind NexaCorp — their stories, passions, and commitment to innovation.</p>
-
-    <div class="team-grid">
-
-      <!-- USER 1: Arjun Mehta -->
-      <div class="team-card">
-        <div class="team-avatar" style="background:rgba(0,229,160,0.12);color:var(--accent)">AM</div>
-        <div class="team-name">Arjun Mehta</div>
-        <div class="team-role">Chief Executive Officer</div>
-        <div class="team-bio">
-          Arjun founded NexaCorp at age 28 after leaving TCS. A die-hard <strong style="color:var(--text)">Mumbai Indians</strong> fan, he rarely misses a home game at Wankhede. His office desk has a framed photo of his golden retriever, <strong style="color:var(--text)">"Bruno"</strong>, and a vintage <strong style="color:var(--text)">1983 World Cup</strong> cricket poster.
-          <br><br>
-          He completed his B.Tech from <strong style="color:var(--text)">VJTI Mumbai in 2003</strong> and MBA from IIM-A in 2005. Favourite quote: <em>"Every system has a weakness — find it before others do."</em>
-        </div>
-        <div class="team-meta">
-          <div class="meta-row"><span class="meta-label">Username:</span><span class="meta-val">arjun.mehta</span></div>
-          <div class="meta-row"><span class="meta-label">Joined:</span><span class="meta-val">09 April 2009 (Founder)</span></div>
-          <div class="meta-row"><span class="meta-label">Hobbies:</span><span class="meta-val">Cricket, chess, hiking at Rajmachi fort</span></div>
-          <div class="meta-row"><span class="meta-label">Pet:</span><span class="meta-val">Bruno (Golden Retriever, b. 2017)</span></div>
-          <div class="meta-row"><span class="meta-label">Fav team:</span><span class="meta-val">Mumbai Indians #45</span></div>
-          <div class="meta-row"><span class="meta-label">Birth year:</span><span class="meta-val">1981</span></div>
-        </div>
-      </div>
-
-      <!-- USER 2: Priya Nair -->
-      <div class="team-card">
-        <div class="team-avatar" style="background:rgba(0,102,255,0.12);color:#4d9eff">PN</div>
-        <div class="team-name">Priya Nair</div>
-        <div class="team-role">Chief Technology Officer</div>
-        <div class="team-bio">
-          Priya heads all engineering at NexaCorp. An alumna of <strong style="color:var(--text)">NIT Trichy (2006)</strong>, she's a passionate <strong style="color:var(--text)">Carnatic music</strong> learner and practises veena every Sunday. She adopted two cats — <strong style="color:var(--text)">"Pixel"</strong> and <strong style="color:var(--text)">"Kernel"</strong> — during the 2020 lockdown.
-          <br><br>
-          Her first computer was a <strong style="color:var(--text)">HCL Beanstalk</strong> she received as a birthday gift in <strong style="color:var(--text)">1999</strong>. She's famous internally for her annual <em>"Tech Stack Detox"</em> presentation every January.
-        </div>
-        <div class="team-meta">
-          <div class="meta-row"><span class="meta-label">Username:</span><span class="meta-val">priya.nair</span></div>
-          <div class="meta-row"><span class="meta-label">Joined:</span><span class="meta-val">15 June 2011</span></div>
-          <div class="meta-row"><span class="meta-label">Hobbies:</span><span class="meta-val">Veena, CTF challenges, Carnatic music</span></div>
-          <div class="meta-row"><span class="meta-label">Pets:</span><span class="meta-val">Pixel & Kernel (cats, 2020)</span></div>
-          <div class="meta-row"><span class="meta-label">College:</span><span class="meta-val">NIT Trichy, CSE Batch 2006</span></div>
-          <div class="meta-row"><span class="meta-label">Birth year:</span><span class="meta-val">1984</span></div>
-        </div>
-      </div>
-
-      <!-- USER 3: Ravi Shankar -->
-      <div class="team-card">
-        <div class="team-avatar" style="background:rgba(255,107,53,0.12);color:var(--accent3)">RS</div>
-        <div class="team-name">Ravi Shankar</div>
-        <div class="team-role">Head of Security Operations</div>
-        <div class="team-bio">
-          Ravi leads the NexaShield SOC team. A <strong style="color:var(--text)">CEH & OSCP certified</strong> security professional from <strong style="color:var(--text)">Bengaluru</strong>, he's obsessed with vintage <strong style="color:var(--text)">Royal Enfield Bullets</strong> — he owns a <strong style="color:var(--text)">1993 Machismo 350</strong> he calls <strong style="color:var(--text)">"Thunderbird"</strong>. Favourite band: <strong style="color:var(--text)">Iron Maiden</strong>.
-          <br><br>
-          Ravi scored 100% in his <strong style="color:var(--text)">OSCP exam in 2019</strong>. He runs a personal blog at <em>0xRavi.dev</em> and mentors students every <strong style="color:var(--text)">Saturday</strong> from his Koramangala home office.
-        </div>
-        <div class="team-meta">
-          <div class="meta-row"><span class="meta-label">Username:</span><span class="meta-val">ravi.shankar</span></div>
-          <div class="meta-row"><span class="meta-label">Joined:</span><span class="meta-val">03 March 2014</span></div>
-          <div class="meta-row"><span class="meta-label">Hobbies:</span><span class="meta-val">Biking, pentesting, Iron Maiden concerts</span></div>
-          <div class="meta-row"><span class="meta-label">Bike:</span><span class="meta-val">Thunderbird — RE Machismo 1993</span></div>
-          <div class="meta-row"><span class="meta-label">Location:</span><span class="meta-val">Koramangala, Bengaluru 560034</span></div>
-          <div class="meta-row"><span class="meta-label">Birth year:</span><span class="meta-val">1987</span></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- PASSWORD HINT SECTION -->
-    <div style="margin-top:3rem;">
-      <div class="section-tag">// Internal Notice Board · Public</div>
-      <h3 style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:1rem; font-size:1.15rem;">Password Policy Reminder — IT Department</h3>
-      <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:2rem; max-width:750px;">
-        <p style="color:var(--muted); margin-bottom:1rem; font-size:0.875rem; line-height:1.8;">
-          Per the <strong style="color:var(--text)">NexaCorp IT Security Policy v3.2 (2022)</strong>, all employee passwords must follow a <strong style="color:var(--text)">personalised mnemonic pattern</strong> to improve memorability while maintaining strength. Passwords combine personal identifiers with a shared corporate token.
-        </p>
-        <div class="ctf-hint-box">
-          <strong>📋 IT Policy — Password Construction Guide</strong>
-          Format hint: [PetName or BikeName] + [BirthYear] + [CompanyCode]<br>
-          Company code: "Nexa" (mandatory suffix for all employees)<br>
-          Example pattern: <span style="color:#fbbf24">Storm2009Nexa</span> (mascot name + founded year + company)<br><br>
-          Note: Arjun still uses his OG password from when the pet policy started (2017 — year Bruno was born)<br>
-          Note: Priya's cats were adopted during COVID (Pixel is first cat, adopted March 2020)<br>
-          Note: Ravi uses his beloved bike name + birth year + company suffix<br><br>
-          <span style="color:#f87171">⚠ This notice is for INTERNAL USE only. Please do not share externally.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DEPARTMENTS -->
-<section id="departments">
-  <div style="max-width:1000px; margin:0 auto;">
-    <div class="section-tag">// Divisions</div>
-    <h2>Our Departments</h2>
-    <p class="section-desc">Specialized teams working in sync to deliver end-to-end enterprise solutions.</p>
-    <div class="dept-grid">
-      <div class="dept-card">
-        <div class="dept-icon">🛡️</div>
-        <div class="dept-name">Security Operations Centre (SOC)</div>
-        <div class="dept-desc">24x7 threat monitoring, incident response, and vulnerability management. Led by Ravi Shankar. Team code: <strong style="color:var(--accent)">NX-SOC-7743</strong>. Internal Slack: #nexashield-ops</div>
-      </div>
-      <div class="dept-card">
-        <div class="dept-icon">💻</div>
-        <div class="dept-name">Engineering & Platform</div>
-        <div class="dept-desc">Full-stack product development, DevOps, and cloud infrastructure. Reports to CTO Priya Nair. Stack: Go, Rust, Kubernetes, AWS. Internal wiki: wiki.nexacorp.in/eng</div>
-      </div>
-      <div class="dept-card">
-        <div class="dept-icon">📊</div>
-        <div class="dept-name">Data & Analytics</div>
-        <div class="dept-desc">NexaStream platform team. Real-time pipeline processing 2M+ events/sec. Team lead: Deepa Krishnaswamy. Annual report codename: <strong style="color:var(--accent)">Project Falcon2024</strong></div>
-      </div>
-      <div class="dept-card">
-        <div class="dept-icon">🏭</div>
-        <div class="dept-name">Industrial Automation (NexaOps)</div>
-        <div class="dept-desc">IIoT, SCADA integration, and smart factory deployments. Office: Peenya Industrial Area, Bengaluru. Client portal: ops.nexacorp.in · Admin ext: 7101</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG / NEWS -->
-<section id="blog">
-  <div class="section-tag">// Company News</div>
-  <h2>Latest Updates</h2>
-  <p class="section-desc">Announcements, technical insights, and team spotlights from across NexaCorp.</p>
-  <div class="blog-grid">
-
-    <div class="blog-card">
-      <div class="blog-img" style="background:linear-gradient(135deg,#0f1f3d,#0d2b1a)">🏆</div>
-      <div class="blog-content">
-        <span class="blog-tag">Achievement</span>
-        <div class="blog-title">Ravi Wins OWASP India Bug Hunt 2024</div>
-        <div class="blog-excerpt">Our Head of SecOps Ravi Shankar placed 1st in the OWASP India regional CTF, solving 14/14 challenges. He dedicated the win to "Thunderbird and Iron Maiden's Powerslave album."</div>
-        <div class="blog-author">
-          <div class="author-dot" style="background:rgba(255,107,53,0.2);color:var(--accent3)">RS</div>
-          Ravi Shankar · Nov 2024
-        </div>
-      </div>
-    </div>
-
-    <div class="blog-card">
-      <div class="blog-img" style="background:linear-gradient(135deg,#1a0f3d,#0f1f3d)">🐱</div>
-      <div class="blog-content">
-        <span class="blog-tag">Team Life</span>
-        <div class="blog-title">Priya's Cats Become NexaCorp's Unofficial Mascots</div>
-        <div class="blog-excerpt">After Priya brought Pixel and Kernel to a company off-site, the pair became internet famous in our internal Slack. "Pixel joined first, then Kernel," Priya said. Both were adopted in 2020.</div>
-        <div class="blog-author">
-          <div class="author-dot" style="background:rgba(0,102,255,0.2);color:#4d9eff">PN</div>
-          Priya Nair · Oct 2024
-        </div>
-      </div>
-    </div>
-
-    <div class="blog-card">
-      <div class="blog-img" style="background:linear-gradient(135deg,#1a2a1a,#1f2a0f)">🏏</div>
-      <div class="blog-content">
-        <span class="blog-tag">CEO Desk</span>
-        <div class="blog-title">Arjun on Leadership, Bruno, and the 2009 Bet</div>
-        <div class="blog-excerpt">In a candid interview, CEO Arjun Mehta revealed he started NexaCorp after a bet with his IIM-A batchmate. "Bruno wasn't around then, but I like to think he'd have believed in me." Born 2017, Bruno turns 7 this year.</div>
-        <div class="blog-author">
-          <div class="author-dot" style="background:rgba(0,229,160,0.2);color:var(--accent)">AM</div>
-          Arjun Mehta · Sep 2024
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-wrapper">
-    <div class="contact-info">
-      <div class="section-tag">// Get In Touch</div>
-      <h2>Contact NexaCorp</h2>
-      <p>Reach out for partnerships, enterprise inquiries, or press. For employee access issues, contact IT at <strong style="color:var(--accent)">it-support@nexacorp.in</strong> or ext 7743.</p>
-      <div class="contact-detail"><span class="contact-icon">📍</span> NexaCorp Tower, MIDC Andheri East, Mumbai 400069</div>
-      <div class="contact-detail"><span class="contact-icon">📞</span> +91-22-6677-8800</div>
-      <div class="contact-detail"><span class="contact-icon">✉️</span> hello@nexacorp.in</div>
-      <div class="contact-detail"><span class="contact-icon">🌐</span> www.nexacorp.in</div>
-      <div class="contact-detail"><span class="contact-icon">🔐</span> Employee Portal: portal.nexacorp.in</div>
-    </div>
-    <div>
-      <div class="company-facts">
-        <h3>Office Locations</h3>
-        <div class="fact-row"><span class="fact-key">Mumbai HQ</span><span class="fact-val">Andheri East 400069</span></div>
-        <div class="fact-row"><span class="fact-key">Pune</span><span class="fact-val">Hinjewadi Phase 1</span></div>
-        <div class="fact-row"><span class="fact-key">Bengaluru</span><span class="fact-val">Koramangala 560034</span></div>
-        <div class="fact-row"><span class="fact-key">Chennai</span><span class="fact-val">OMR Tech Park</span></div>
-        <div class="fact-row"><span class="fact-key">Singapore</span><span class="fact-val">One-North, Buona Vista</span></div>
-        <div class="fact-row"><span class="fact-key">IT Helpdesk</span><span class="fact-val">Ext: 7743 / #it-help</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div>
-    <span class="footer-brand">Nexa<span>Corp</span> Industries</span>
-    <span style="margin-left:1rem; color:var(--muted)">© 2024 · Mumbai, India</span>
-  </div>
-  <div style="display:flex; gap:1.5rem; color:var(--muted)">
-    <span>portal.nexacorp.in</span>
-    <span>|</span>
-    <span>CIN: U72900MH2009PLC123456</span>
-  </div>
-</footer>
-
-</div><!-- end #main-site -->
-
-<!-- ══════════════════════════════════════ LOGIN PANEL ══════════════════════════════════════ -->
-<div id="login-section">
-  <div class="login-panel">
-    <button class="back-btn" onclick="hideLogin()">✕ Back</button>
-    <div class="login-logo">
-      <div class="brand">Nexa<span>Corp</span></div>
-      <small>Employee Portal · Secure Access</small>
-    </div>
-    <div>
-      <div class="form-group">
-        <label class="form-label">Username</label>
-        <input type="text" class="form-input" id="login-user" placeholder="e.g. arjun.mehta" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-input" id="login-pass" placeholder="••••••••••••" autocomplete="off">
-      </div>
-      <button class="login-btn" onclick="doLogin()">Access Portal →</button>
-      <div class="login-msg" id="login-msg"></div>
-    </div>
-    <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border); text-align:center; color:var(--muted); font-size:0.775rem; font-family:'DM Mono',monospace;">
-      Forgot password? Contact IT ext 7743<br>
-      <span style="color:#444; font-size:0.7rem;">NexaCorp Employee Portal v3.2.1</span>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════ DASHBOARD ══════════════════════════════════════ -->
-<div id="dashboard-section">
-  <div class="dash-nav">
-    <div class="dash-brand">Nexa<span>Corp</span> Portal</div>
-    <div class="dash-user">
-      <div class="dash-avatar" id="dash-avatar">?</div>
-      <span id="dash-username" style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--muted)"></span>
-      <button class="logout-btn" onclick="doLogout()">Logout</button>
-    </div>
-  </div>
-  <div class="dash-body">
-    <div class="dash-welcome">Welcome back, <span id="dash-name">User</span> 👋</div>
-    <div class="dash-sub" id="dash-role"></div>
-    <div class="dash-cards">
-      <div class="dash-card">
-        <div class="dash-card-label">Open Tickets</div>
-        <div class="dash-card-val" style="color:var(--accent3)">3</div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-card-label">Projects Active</div>
-        <div class="dash-card-val" style="color:var(--accent2)">7</div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-card-label">Security Score</div>
-        <div class="dash-card-val" style="color:var(--accent)">94%</div>
-      </div>
-    </div>
-    <div class="ctf-success-banner">
-      <h3>🎉 CTF Challenge — Login Successful!</h3>
-      <p>You have successfully authenticated as <strong id="flag-user"></strong>. Password cracking practice lab challenge completed.</p>
-      <div class="flag" id="flag-text"></div>
-    </div>
-
-    <!-- Per-user private data -->
-    <div id="user-private-data" style="margin-top:1.5rem; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.75rem; font-family:'DM Mono',monospace; font-size:0.8rem; line-height:2;">
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════ JS ══════════════════════════════════════ -->
 <script>
-  // ─── CREDENTIAL STORE ───
-  // Passwords constructed from public OSINT hints scattered on the page
-  // Pattern: [PetName/BikeName][BirthYear]Nexa
-  const USERS = {
-    "arjun.mehta": {
-      password: "Bruno2017Nexa",       // Pet: Bruno (Golden Retriever, born 2017) + company suffix
-      name: "Arjun Mehta",
-      role: "Chief Executive Officer",
-      flag: "FLAG{Br0n0_1s_a_g00d_b0y_NexaCTF_2024}",
-      private: `
-        <strong style="color:var(--accent)">// CEO Private Dashboard</strong><br>
-        Board Meeting: 15 Jan 2025 · Boardroom B, Floor 12<br>
-        M&A Target Codename: Project Kite<br>
-        Personal Stock Holdings: 23.4% (NEXACORP NSE)<br>
-        Emergency Contact: Meera Mehta (spouse) · +91-98xxxxxxx<br>
-        LinkedIn: linkedin.com/in/arjunmehta-nexacorp<br>
-        <span style="color:var(--warn)">Last login: 2 hours ago from 10.0.1.12</span>
-      `
-    },
-    "priya.nair": {
-      password: "Pixel2020Nexa",       // Cat: Pixel (first cat, adopted March 2020 lockdown) + company suffix
-      name: "Priya Nair",
-      role: "Chief Technology Officer",
-      flag: "FLAG{P1x3l_the_cat_owned_NexaCTF_2024}",
-      private: `
-        <strong style="color:#4d9eff)">// CTO Private Dashboard</strong><br>
-        AWS Root Account: aws.nexacorp.in/root<br>
-        GitHub Org: github.com/nexacorp-internal<br>
-        Engineering Roadmap 2025: wiki.nexacorp.in/roadmap2025<br>
-        Veena class: Sundays 9-11am (Google Meet)<br>
-        Personal blog draft: "Why Rust > Go for low-latency SOC tools"<br>
-        <span style="color:var(--warn)">Last login: Yesterday 11:42 PM from 10.0.2.45</span>
-      `
-    },
-    "ravi.shankar": {
-      password: "Thunderbird1987Nexa",  // Bike name: Thunderbird (RE Machismo 1993) + birth year 1987 + company suffix
-      name: "Ravi Shankar",
-      role: "Head of Security Operations",
-      flag: "FLAG{Th0nderb1rd_r1d3s_NexaCTF_2024}",
-      private: `
-        <strong style="color:var(--accent3)">// SOC HEAD Private Dashboard</strong><br>
-        Active Incident: INC-2024-0817 (Medium Severity)<br>
-        SIEM Platform: Splunk Enterprise · siem.nexacorp.in<br>
-        VPN Config: vpn.nexacorp.in · Client: OpenVPN<br>
-        Personal blog: 0xRavi.dev · Posts: 47<br>
-        Iron Maiden playlist: Spotify /ravishankar87<br>
-        Mentoring slot: Every Saturday 10am-1pm (Koramangala)<br>
-        <span style="color:var(--warn)">Last login: 37 minutes ago from 10.0.3.11</span>
-      `
-    }
-  };
+  const output = document.getElementById('output');
 
-  function showLogin() {
-    document.getElementById('login-section').classList.add('active');
-    document.getElementById('login-user').focus();
+  const script = [
+    { type: 'cmd', prompt: 'root@kali', path: '~', text: 'whoami' },
+    { type: 'out', text: 'root' },
+    { type: 'cmd', prompt: 'root@kali', path: '~', text: 'echo $MINDSET' },
+    { type: 'final', text: 'Be black or white' }
+  ];
+
+  let lineIndex = 0;
+
+  function typeLine(el, text, speed, callback) {
+    let i = 0;
+    function tick() {
+      if (i <= text.length) {
+        el.textContent = text.slice(0, i);
+        i++;
+        setTimeout(tick, speed);
+      } else if (callback) {
+        callback();
+      }
+    }
+    tick();
   }
 
-  function hideLogin() {
-    document.getElementById('login-section').classList.remove('active');
-    document.getElementById('login-msg').className = 'login-msg';
-    document.getElementById('login-msg').textContent = '';
-    document.getElementById('login-user').value = '';
-    document.getElementById('login-pass').value = '';
-  }
+  function nextLine() {
+    if (lineIndex >= script.length) return;
+    const item = script[lineIndex];
+    const div = document.createElement('div');
+    div.className = 'line';
+    output.appendChild(div);
 
-  function doLogin() {
-    const user = document.getElementById('login-user').value.trim().toLowerCase();
-    const pass = document.getElementById('login-pass').value;
-    const msgEl = document.getElementById('login-msg');
+    if (item.type === 'cmd') {
+      const prefix = document.createElement('span');
+      prefix.innerHTML = `<span class="prompt">${item.prompt}</span>:<span class="path">${item.path}</span><span class="cmd">$ </span>`;
+      div.appendChild(prefix);
+      const cmdSpan = document.createElement('span');
+      cmdSpan.className = 'cmd';
+      div.appendChild(cmdSpan);
+      const cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      div.appendChild(cursor);
 
-    if (!user || !pass) {
-      msgEl.className = 'login-msg error';
-      msgEl.textContent = 'ERROR: Username and password required.';
-      return;
-    }
+      typeLine(cmdSpan, item.text, 55, () => {
+        cursor.remove();
+        lineIndex++;
+        setTimeout(nextLine, 350);
+      });
+    } else if (item.type === 'out') {
+      div.className = 'line comment';
+      div.textContent = item.text;
+      lineIndex++;
+      setTimeout(nextLine, 400);
+    } else if (item.type === 'final') {
+      div.id = 'typed-final';
+      div.className = 'line result';
+      const cursor = document.createElement('span');
+      cursor.className = 'cursor';
 
-    if (USERS[user] && USERS[user].password === pass) {
-      const u = USERS[user];
-      msgEl.className = 'login-msg success';
-      msgEl.textContent = '✓ Authentication successful. Redirecting...';
-      setTimeout(() => {
-        hideLogin();
-        showDashboard(user, u);
-      }, 900);
-    } else {
-      msgEl.className = 'login-msg error';
-      msgEl.textContent = 'ERROR: Invalid credentials. Access denied.';
-      // shake animation
-      const panel = document.querySelector('.login-panel');
-      panel.style.animation = 'none';
-      panel.offsetHeight;
-      panel.style.animation = 'shake 0.4s ease';
+      typeLine(div, item.text, 90, () => {
+        div.appendChild(cursor);
+        lineIndex++;
+      });
     }
   }
 
-  function showDashboard(username, userData) {
-    document.getElementById('dash-name').textContent = userData.name.split(' ')[0];
-    document.getElementById('dash-username').textContent = username;
-    document.getElementById('dash-role').textContent = '// ' + userData.role + ' · NexaCorp Industries';
-    document.getElementById('dash-avatar').textContent = username.split('.').map(s => s[0].toUpperCase()).join('');
-    document.getElementById('flag-user').textContent = userData.name + ' (' + username + ')';
-    document.getElementById('flag-text').textContent = userData.flag;
-    document.getElementById('user-private-data').innerHTML = userData.private;
-    document.getElementById('dashboard-section').classList.add('active');
-  }
-
-  function doLogout() {
-    document.getElementById('dashboard-section').classList.remove('active');
-  }
-
-  // Enter key on login inputs
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      const ls = document.getElementById('login-section');
-      if (ls.classList.contains('active')) doLogin();
-    }
-  });
-
-  // Mobile login button
-  const mobileBtn = document.getElementById('mobile-login');
-  if (window.innerWidth < 768) mobileBtn.style.display = 'flex';
-
-  // Shake keyframe
-  const style = document.createElement('style');
-  style.textContent = `@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }`;
-  document.head.appendChild(style);
+  nextLine();
 </script>
+
 </body>
 </html>
+         
